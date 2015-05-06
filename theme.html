@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="{block:English}en{/block:English}{block:French}fr{/block:French}{block:German}de{/block:German}{block:Japanese}ja{/block:Japanese}{block:Italian}it{/block:Italian}{block:Spanish}es{/block:Spanish}{block:Polish}pl{/block:Polish}">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--*******************************************************
+
+	Name: Starter
+	URL: http://otherthemes.com
+	Author: Other Themes
+	Version: 1.0.0
+
+	Changelog:
+
+	6.5.2015 Initial release
+
+	********************************************************-->
+
+	{block:Hidden}
+
+	<!-- Font -->
+	<meta name="font:Primary" content="">
+	<meta name="font:Secondary" content="">
+	<meta name="text:Google Fonts Primary" content="">
+	<meta name="text:Google Fonts Secondary" content="">
+	<!-- Color -->
+	<meta name="color:Background" content="#FFFFFF">
+	<!-- Toggle -->
+	<meta name="if:Google Fonts" content="1">
+
+	{/block:Hidden}
+
+	<title>{Title}{block:PostSummary} &mdash; {PostSummary}{/block:PostSummary}</title>
+	{block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
+
+	<link rel="apple-touch-icon" href="{PortraitURL-128}">
+	<link rel="shortcut icon" href="{Favicon}">
+	<link rel="alternate" type="application/rss+xml" href="{RSS}">
+
+	<link rel="stylesheet" href="http://static.tumblr.com/cqczc5x/kYdmihjuj/normalize.css" type="text/css" media="all">
+	{block:IfGoogleFonts}
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family={text:Google Fonts Primary}:400,700">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family={text:Google Fonts Secondary}:400,400italic,500,700,700italic">
+	{/block:IfGoogleFonts}
+
+	<style type="text/css">
+
+	{CustomCSS}
+
+	</style>
+
+</head>
+<body>
+
+	<header class="header">
+		<h1 class="header__logo"><a href="/">{Title}</a></h1>
+		{block:Description}<div class="header__description">{Description}</div>{/block:Description}
+		<ul class="header__nav">
+			{block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
+			<li><a href="/archive">{lang:Archive}</a></li>
+			{block:AskEnabled}<li><a href="/ask">{AskLabel}</a></li>{/block:AskEnabled}
+			{block:SubmissionsEnabled}<li><a href="/submit">{SubmitLabel}</a></li>{/block:SubmissionsEnabled}
+		</ul>
+		<form class="header__search" action="/search" method="get">
+			<input type="text" placeholder="{lang:Search}" name="q" value="{SearchQuery}">
+			<input type="submit" value="{lang:Search}">
+		</form>
+	</header>
+
+	<section class="posts">
+		{block:SearchPage}
+		<div class="result">
+			<p>{lang:Found SearchResultCount results for SearchQuery 2}</p>
+			{block:NoSearchResults}<p>{lang:No results for SearchQuery 2}</p>{/block:NoSearchResults}
+		</div>
+		{/block:SearchPage}
+		{block:TagPage}<div class="result"><p>{lang:TagResultCount posts tagged Tag 3}</p></div>{/block:TagPage}
+
+		{block:Posts}
+		<article class="post">
+			{block:Text}
+			<div class="post__text">
+				{block:Title}<h3>{Title}</h3>{/block:Title}
+				{Body}
+			</div>
+			{/block:Text}
+			{block:Quote}
+			<div class="post__quote">
+				<blockquote class="words {Length}">&#8220;{Quote}&#8221;</blockquote>
+				{block:Source}<p class="quote__source">&mdash; {Source}</p>{/block:Source}
+			</div>
+			{/block:Quote}
+			{block:Link}
+			<div class="post__link">
+				<h3><a href="{URL}" {Target}>{Name}</a></h3>
+				{block:Description}<div class="link__caption">{Description}</div>{/block:Description}
+			</div>
+			{/block:Link}
+			{block:Video}
+			<div class="post__video">
+				{Video-500}
+				{block:Caption}<div class="video__caption">{Caption}</div>{/block:Caption}
+			</div>
+			{/block:Video}
+			{block:Audio}
+			<div class="post__audio">
+				{block:AlbumArt}<img src="{AlbumArtURL}" alt="">{/block:AlbumArt}
+				{AudioPlayerBlack}
+				{block:Caption}<div class="audio__caption">{Caption}</div>{/block:Caption}
+			</div>
+			{/block:Audio}
+			{block:Photo}
+			<div class="post__photo">
+				{LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>{LinkCloseTag}
+				{block:Caption}<div class="photo__caption">{Caption}</div>{/block:Caption}
+			</div>
+			{/block:Photo}
+			{block:Photoset}
+			<div class="post__photoset" data-layout="{PhotosetLayout}">
+				{block:Photos}<img src="{PhotoURL-HighRes}"/>{/block:Photos}
+				{block:Caption}<div class="photoset__caption">{Caption}</div>{/block:Caption}
+			</div>
+			{/block:Photoset}
+			{block:Panorama}
+			<div class="post__panorama">
+			    {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />{LinkCloseTag}
+			    {block:Caption}<div class="panorama__caption">{Caption}</div>{/block:Caption}
+			</div>
+			{/block:Panorama}
+
+			{block:Chat}
+			<div class="post__chat">
+				{block:Title}<h3>{Title}</h3>{/block:Title}
+				<ul class="chat__conversation">
+					{block:Lines}
+					<li class="conversation__line {Alt}">
+						{block:Label}<span class="line__person">{Label}</span>{/block:Label}
+						<span class="line__said">{Line}</span>
+					</li>
+					{/block:Lines}
+				</ul>
+			</div>
+			{/block:Chat}
+			{block:Answer}
+			<div class="post__answer">
+				{Asker}
+				{Question}
+				{Answer}
+			</div>
+			{/block:Answer}
+		</article>
+		{/block:Posts}
+
+		{block:PostNotes}
+		{PostNotes}
+		{/block:PostNotes}
+
+		{block:Pagination}
+		<div class="posts__pagination">
+			{block:PreviousPage}<a class="pagination__prev" href="{PreviousPage}">{lang:Previous}</a>{/block:PreviousPage}
+			{block:NextPage}<a class="pagination__next" href="{NextPage}">{lang:Next}</a>{/block:NextPage}
+		</div>
+		{/block:Pagination}
+	</section>
+
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+
+</body>
+</html>
