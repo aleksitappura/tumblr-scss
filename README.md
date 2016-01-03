@@ -1,6 +1,12 @@
 # tumblr-scss
 Boilerplate for Tumblr theme development.
 
+Includes:
+
+- jQuery (hosted)
+- FontAwesome (hosted)
+- jScroll
+
 ##Getting started
 
 In your cloned directory, run:
@@ -15,7 +21,7 @@ Resources for creating Tumblr themes.
 
 - [Official documentation](https://www.tumblr.com/docs/en/custom_themes)
 - [Localization documentation](https://www.tumblr.com/docs/en/localizing_themes)
-- [Infinite scrolling plugin for jQuery](http://jscroll.com/)
+- [Infinite scrolling plugin documentation](http://jscroll.com/)
 
 ##License
 
