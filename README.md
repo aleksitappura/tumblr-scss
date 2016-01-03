@@ -1,7 +1,7 @@
 # tumblr-scss
 Boilerplate for Tumblr theme development.
 
-Includes:
+Included libraries:
 
 - jQuery (hosted)
 - FontAwesome (hosted)
