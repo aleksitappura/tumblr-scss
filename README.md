@@ -3,9 +3,9 @@ Boilerplate for Tumblr theme development.
 
 Included libraries:
 
-- jQuery (hosted)
-- FontAwesome (hosted)
-- jScroll
+- [jQuery (hosted)](https://jquery.com/)
+- [Font Awesome (hosted)](https://fortawesome.github.io/Font-Awesome/)
+- [jScroll](http://jscroll.com/)
 
 ##Getting started
 
