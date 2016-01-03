@@ -1,5 +1,5 @@
 # tumblr-scss
-Boilerplate for Tumblr theme development.
+A boilerplate for Tumblr theme development.
 
 Included libraries:
 
