@@ -21,7 +21,7 @@ Resources for creating Tumblr themes.
 
 - [Official documentation](https://www.tumblr.com/docs/en/custom_themes)
 - [Localization documentation](https://www.tumblr.com/docs/en/localizing_themes)
-- [Infinite scrolling plugin documentation](http://jscroll.com/)
+- [jScroll documentation](http://jscroll.com/)
 
 ##License
 
