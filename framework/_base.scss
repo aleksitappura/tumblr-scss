@@ -4,13 +4,44 @@
 }
 
 body {
-	font-size: 16px;
+	font-size: 14px;
 	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	line-height: 1.4;
-  font-weight: 700;
+input {
+	font-family: inherit;
+	font-size: 14px;
+	border: 0;
+	outline: 0;
+
+	&::-webkit-input-placeholder {
+	 	color: #000;
+	}
+
+	&:-moz-placeholder {
+	 	color: #000;
+	}
+
+	&::-moz-placeholder {
+		color: #000;
+	}
+
+	&:-ms-input-placeholder {  
+	 	color: #000;
+	}
+}
+
+a {
+	color: #000;
+}
+
+b, strong, h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+}
+
+i, em {
+	font-style: italic;
 }
 
 img {
@@ -23,8 +54,57 @@ blockquote {
 	margin: 0;
 }
 
-iframe {
+.post__audio iframe, .post__video iframe {
 	height: auto;
 	max-width: 100%;
 	display: block;
+}
+
+// Headings
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+
+// Paragraphs
+
+p {
+	margin-bottom: 20px;
+}
+
+// Quotes
+
+blockquote {
+	padding-left: 15px;
+	border-left: 5px solid #CCC;
+	font-style: italic;
+}
+
+// Lists
+
+ul, ol {
+	margin-bottom: 20px;
+}
+
+ul { 
+   list-style-type: disc; 
+   list-style-position: inside; 
+}
+
+ol { 
+   list-style-type: decimal; 
+   list-style-position: inside; 
+}
+
+ul ul, ol ul { 
+   list-style-type: circle; 
+   list-style-position: inside; 
+   margin-left: 15px; 
+}
+
+ol ol, ul ol { 
+   list-style-type: lower-latin; 
+   list-style-position: inside; 
+   margin-left: 15px; 
 }

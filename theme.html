@@ -8,7 +8,7 @@
 	{block:Hidden}
 
 	<!-- Font -->
-	<meta name="font:Primary" content="">
+	<meta name="font:Primary" content="Helvetica, Arial, sans-serif">
 	<meta name="font:Secondary" content="">
 	<meta name="text:Google Fonts Primary" content="">
 	<meta name="text:Google Fonts Secondary" content="">
@@ -16,6 +16,8 @@
 	<meta name="color:Background" content="#FFFFFF">
 	<!-- Toggle -->
 	<meta name="if:Google Fonts" content="1">
+	<meta name="if:Infinite Scrolling" content="1">
+	<meta name="if:Manual Post Loading" content="1">
 
 	{/block:Hidden}
 
@@ -25,14 +27,20 @@
 	<link rel="apple-touch-icon" href="{PortraitURL-128}">
 	<link rel="shortcut icon" href="{Favicon}">
 	<link rel="alternate" type="application/rss+xml" href="{RSS}">
-
-	<link rel="stylesheet" href="http://static.tumblr.com/cqczc5x/kYdmihjuj/normalize.css" type="text/css" media="all">
+	
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	{block:IfGoogleFonts}
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family={text:Google Fonts Primary}:400,700">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family={text:Google Fonts Secondary}:400,400italic,500,700,700italic">
 	{/block:IfGoogleFonts}
 
+	<link rel="stylesheet" href="https://dl.dropbox.com/s/66a5psnvmsx823t/main.css" type="text/css" media="all">
+
 	<style type="text/css">
+
+	body {
+		font-family: {font:Primary};
+	}
 
 	{CustomCSS}
 
@@ -42,117 +50,236 @@
 <body>
 
 	<header class="header">
-		<h1 class="header__logo"><a href="/">{Title}</a></h1>
-		{block:Description}<div class="header__description">{Description}</div>{/block:Description}
-		<ul class="header__nav">
-			{block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
-			<li><a href="/archive">{lang:Archive}</a></li>
-			{block:AskEnabled}<li><a href="/ask">{AskLabel}</a></li>{/block:AskEnabled}
-			{block:SubmissionsEnabled}<li><a href="/submit">{SubmitLabel}</a></li>{/block:SubmissionsEnabled}
-		</ul>
-		<form class="header__search" action="/search" method="get">
-			<input type="text" placeholder="{lang:Search}" name="q" value="{SearchQuery}">
-			<input type="submit" value="{lang:Search}">
-		</form>
-	</header>
-
-	<section class="posts">
-		{block:SearchPage}
-		<div class="result">
-			<p>{lang:Found SearchResultCount results for SearchQuery 2}</p>
-			{block:NoSearchResults}<p>{lang:No results for SearchQuery 2}</p>{/block:NoSearchResults}
-		</div>
-		{/block:SearchPage}
-		{block:TagPage}<div class="result"><p>{lang:TagResultCount posts tagged Tag 3}</p></div>{/block:TagPage}
-
-		{block:Posts}
-		<article class="post">
-			{block:Text}
-			<div class="post__text">
-				{block:Title}<h3>{Title}</h3>{/block:Title}
-				{Body}
-			</div>
-			{/block:Text}
-			{block:Quote}
-			<div class="post__quote">
-				<blockquote class="words {Length}">&#8220;{Quote}&#8221;</blockquote>
-				{block:Source}<p class="quote__source">&mdash; {Source}</p>{/block:Source}
-			</div>
-			{/block:Quote}
-			{block:Link}
-			<div class="post__link">
-				<h3><a href="{URL}" {Target}>{Name}</a></h3>
-				{block:Description}<div class="link__caption">{Description}</div>{/block:Description}
-			</div>
-			{/block:Link}
-			{block:Video}
-			<div class="post__video">
-				{Video-500}
-				{block:Caption}<div class="video__caption">{Caption}</div>{/block:Caption}
-			</div>
-			{/block:Video}
-			{block:Audio}
-			<div class="post__audio">
-				{block:AlbumArt}<img src="{AlbumArtURL}" alt="">{/block:AlbumArt}
-				{AudioPlayerBlack}
-				{block:Caption}<div class="audio__caption">{Caption}</div>{/block:Caption}
-			</div>
-			{/block:Audio}
-			{block:Photo}
-			<div class="post__photo">
-				{LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>{LinkCloseTag}
-				{block:Caption}<div class="photo__caption">{Caption}</div>{/block:Caption}
-			</div>
-			{/block:Photo}
-			{block:Photoset}
-			<div class="post__photoset" data-layout="{PhotosetLayout}">
-				{block:Photos}<img src="{PhotoURL-HighRes}"/>{/block:Photos}
-				{block:Caption}<div class="photoset__caption">{Caption}</div>{/block:Caption}
-			</div>
-			{/block:Photoset}
-			{block:Panorama}
-			<div class="post__panorama">
-			    {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />{LinkCloseTag}
-			    {block:Caption}<div class="panorama__caption">{Caption}</div>{/block:Caption}
-			</div>
-			{/block:Panorama}
-
-			{block:Chat}
-			<div class="post__chat">
-				{block:Title}<h3>{Title}</h3>{/block:Title}
-				<ul class="chat__conversation">
-					{block:Lines}
-					<li class="conversation__line {Alt}">
-						{block:Label}<span class="line__person">{Label}</span>{/block:Label}
-						<span class="line__said">{Line}</span>
+		<div class="container">
+			<h1 class="header__logo">
+				<a href="/">{Title}</a>
+			</h1>
+			{block:Description}
+				<p class="header__description">{Description}</p>
+			{/block:Description}
+			<ul class="header__nav">
+				{block:HasPages}
+					{block:Pages}
+						<li>
+							<a href="{URL}">{Label}</a>
+						</li>
+					{/block:Pages}
+				{/block:HasPages}
+				<li>
+					<a href="/archive">{lang:Archive}</a>
+				</li>
+				{block:AskEnabled}
+					<li>
+						<a href="/ask">{AskLabel}</a>
 					</li>
-					{/block:Lines}
-				</ul>
-			</div>
-			{/block:Chat}
-			{block:Answer}
-			<div class="post__answer">
-				{Asker}
-				{Question}
-				{Answer}
-			</div>
-			{/block:Answer}
-		</article>
-		{/block:Posts}
-
-		{block:PostNotes}
-		{PostNotes}
-		{/block:PostNotes}
-
-		{block:Pagination}
-		<div class="posts__pagination">
-			{block:PreviousPage}<a class="pagination__prev" href="{PreviousPage}">{lang:Previous}</a>{/block:PreviousPage}
-			{block:NextPage}<a class="pagination__next" href="{NextPage}">{lang:Next}</a>{/block:NextPage}
+				{/block:AskEnabled}
+				{block:SubmissionsEnabled}
+					<li>
+						<a href="/submit">{SubmitLabel}</a>
+					</li>
+				{/block:SubmissionsEnabled}
+				<form class="header__search" action="/search" method="get">
+					<input type="text" placeholder="{lang:Search}" name="q" value="{SearchQuery}">
+				</form>
+			</ul>
 		</div>
-		{/block:Pagination}
-	</section>
+	</header>
+	
+	<div class="container">
+		<section class="posts">
+			{block:SearchPage}
+			<div class="result">
+				<p>{lang:Found SearchResultCount results for SearchQuery 2}</p>
+				{block:NoSearchResults}
+					<p>{lang:No results for SearchQuery 2}</p>
+				{/block:NoSearchResults}
+			</div>
+			{/block:SearchPage}
+			{block:TagPage}
+				<div class="result">
+					<p>{lang:TagResultCount posts tagged Tag 3}</p>
+				</div>
+			{/block:TagPage}
+			{block:Posts}
+			<article class="post" id="{PostID}">
+				{block:Text}
+					<div class="post__text">
+						{block:Title}
+							<h3>
+								<a href="{Permalink}">{Title}</a>
+							</h3>
+						{/block:Title}
+						{Body}
+					</div>
+				{/block:Text}
+				{block:Quote}
+					<div class="post__quote">
+						<blockquote class="words {Length}">&#8220;{Quote}&#8221;</blockquote>
+						{block:Source}
+							<p class="quote__source">&mdash; {Source}</p>
+						{/block:Source}
+					</div>
+				{/block:Quote}
+				{block:Link}
+					<div class="post__link">
+						<h3>
+							<a href="{URL}" {Target}>{Name}</a>
+						</h3>
+						{block:Description}
+							<div class="link__caption">{Description}</div>
+						{/block:Description}
+					</div>
+				{/block:Link}
+				{block:Video}
+					<div class="post__video">
+						{Video-700}
+						{block:Caption}
+							<div class="video__caption">{Caption}</div>
+						{/block:Caption}
+					</div>
+				{/block:Video}
+				{block:Audio}
+					<div class="post__audio">
+						{AudioEmbed-640}
+						{block:Caption}<div class="audio__caption">{Caption}</div>{/block:Caption}
+					</div>
+				{/block:Audio}
+				{block:Photo}
+					<div class="post__photo">
+						{LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>{LinkCloseTag}
+						{block:Caption}<div class="photo__caption">{Caption}</div>{/block:Caption}
+					</div>
+				{/block:Photo}
+				{block:Photoset}
+					<div class="post__photoset" data-layout="{PhotosetLayout}">
+						{block:Photos}
+							<img src="{PhotoURL-HighRes}"/>
+						{/block:Photos}
+						{block:Caption}
+							<div class="photoset__caption">{Caption}</div>
+						{/block:Caption}
+					</div>
+				{/block:Photoset}
+				{block:Panorama}
+					<div class="post__panorama">
+					    {LinkOpenTag}
+					    	<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />
+					    {LinkCloseTag}
+					    {block:Caption}
+					    	<div class="panorama__caption">{Caption}</div>
+					    {/block:Caption}
+					</div>
+				{/block:Panorama}
+				{block:Chat}
+				<div class="post__chat">
+					{block:Title}
+						<h3>{Title}</h3>
+					{/block:Title}
+					<ul class="chat__conversation">
+						{block:Lines}
+						<li class="conversation__line {Alt}">
+							{block:Label}<span class="line__person">{Label}</span>{/block:Label}
+							<span class="line__said">{Line}</span>
+						</li>
+						{/block:Lines}
+					</ul>
+				</div>
+				{/block:Chat}
+				{block:Answer}
+				<div class="post__answer">
+					{Asker}
+					{Question}
+					{Answer}
+				</div>
+				{/block:Answer}
+				<div class="post__bottom">
+					{block:HasTags}
+					<ul class="post__bottom__tags">
+						{block:Tags}
+						<li><a href="{TagURL}">#{Tag}</a></li>
+						{/block:Tags}
+					</ul>
+					{/block:HasTags}
+					<div class="clearfix">
+						<ul class="post__bottom__info">
+							<li><a href="{Permalink}">{TimeAgo}</a></li>
+							{block:NoteCount}<li><a class="post__bottom__notecount" href="{Permalink}">{NoteCountWithLabel}</a></li>{/block:NoteCount}
+						</ul>
+						{block:Date}
+						<ul class="post__bottom__buttons">
+							<ul>
+								<div class="post__bottom__buttons__like">
+									{LikeButton}
+									<span class="post__bottom__buttons__like__fake"><i class="fa fa-heart"></i></span>
+								</div>
+								<li><a class="post__bottom__buttons__reblog" href="{ReblogURL}"><i class="fa fa-retweet"></i></a></li>
+							</ul>
+						</ul>
+						{/block:Date}
+					</div>
+				</div>
+			</article>
+			{/block:Posts}
+
+			{block:PostNotes}
+			{PostNotes-64}
+			{/block:PostNotes}
+
+			{block:Pagination}
+			<div class="posts__pagination">
+				{block:IfInfiniteScrolling}
+					{block:NextPage}
+						<a class="pagination__next" href="{NextPage}">{lang:Load more posts}</a>
+					{/block:NextPage}
+				{/block:IfInfiniteScrolling}
+
+				{block:IfNotInfiniteScrolling}
+					{block:PreviousPage}
+						<a class="pagination__prev" href="{PreviousPage}">{lang:Previous}</a>
+					{/block:PreviousPage}
+					{block:NextPage}
+						<a class="pagination__next" href="{NextPage}">{lang:Next}</a>
+					{/block:NextPage}
+				{/block:IfNotInfiniteScrolling}
+			</div>
+			{/block:Pagination}
+		</section>
+	</div>
+
+	<footer class="footer">
+		<div class="container">
+			<p>&copy; {CopyrightYears} {Title}. Theme by <a href="//unmade.xyz" target="_blank">Unmade</a>.</p>
+		</div>
+	</footer>
 
 	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="//static.tumblr.com/g70gdbb/hOOo0dpwl/jscroll.min.js"></script>
+
+	<script type="text/javascript">
+		{block:IfInfiniteScrolling}
+		// Callback function
+		function requestIDs(){
+			var $newPosts = $('.jscroll-added').find('.post');
+
+			var $newPostIDs = $newPosts.map(function () {
+			    return $(this).attr('id');
+			}).get();
+
+			Tumblr.LikeButton.get_status_by_post_ids($newPostIDs);
+		};
+
+		// Infinite scroll
+		$('.posts').jscroll({
+			nextSelector: '.pagination__next',
+    		contentSelector: '.post',
+    		loadingHtml: '<p style="margin-bottom: 50px">{lang:Loading}...</p>',
+    		callback: requestIDs,
+    		{block:IfManualPostLoading}
+    		autoTrigger: false
+    		{/block:IfManualPostLoading}
+		});
+		{/block:IfInfiniteScrolling}
+	</script>
 
 </body>
 </html>

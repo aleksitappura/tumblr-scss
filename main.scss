@@ -1,5 +1,5 @@
 // Vendor
-@import "vendor/normalize";
+@import "vendor/reset";
 
 // Framework
 @import "framework/defaults";
@@ -12,6 +12,7 @@
 
 // Partials
 @import "partials/posts";
+@import "partials/layout";
 
 // Overrides
 @import "framework/responsive";

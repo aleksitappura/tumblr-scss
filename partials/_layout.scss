@@ -1,0 +1,39 @@
+.header {
+	padding: 50px 0;
+	text-align: center;
+
+	&__nav {
+		margin: 0;
+		padding: 0;
+
+		li {
+			display: inline;
+			list-style-type: none;
+
+			&:not(:last-child) {
+				margin-right: 20px;
+			}
+		}
+	}
+
+	&__search {
+		display: inline;
+
+		input {
+			width: 50px;
+			transition: all 200ms ease-in-out;
+
+			&:active, &:focus {
+				width: 150px;
+			}
+		}
+	}
+}
+
+.posts__pagination {
+	margin-bottom: 50px;
+}
+
+.footer {
+	margin-bottom: 50px;
+}

@@ -1,3 +1,46 @@
-.photo {
-	background: #CCC;
+.post {
+	margin-bottom: 50px;
+}
+
+.post__bottom {
+
+	&__tags {
+		margin: 0;
+		padding: 0;
+
+		li {
+			list-style-type: none;
+			display: inline;
+
+			&:not(:last-child) {
+				margin-right: 15px;
+			}
+		}
+	}
+
+	&__buttons {
+		margin: 0;
+		padding: 0;
+		float: right;
+
+		li {
+			list-style-type: none;
+			display: inline-block;
+		}
+	}
+
+	&__info {
+		margin: 0;
+		padding: 0;
+		float: left;
+
+		li {
+			list-style-type: none;
+			display: inline;
+
+			&:not(:last-child) {
+				margin-right: 15px;
+			}
+		}
+	}
 }

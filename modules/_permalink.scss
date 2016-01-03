@@ -1,0 +1,20 @@
+.notes {
+
+	li {
+		list-style-type: none;
+		
+		.action {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		.avatar_frame {
+			display: inline-block;
+			vertical-align: middle;
+
+			img {
+				display: inline;
+			}
+		}
+	}
+}
