@@ -13,8 +13,8 @@ Can be also used without Sass. Just start with `theme.html` and add your styles 
 
 Resources for creating Tumblr themes.
 
-[Custom theme development documentation](https://www.tumblr.com/docs/en/custom_themes)
-[Infinite scrolling plugin for jQuery](http://jscroll.com/)
+- [Custom theme development documentation](https://www.tumblr.com/docs/en/custom_themes)
+- [Infinite scrolling plugin for jQuery](http://jscroll.com/)
 
 ##License
 
